@@ -91,6 +91,10 @@ module taxi_eth_mac_1g_gmii_fifo #
     output wire logic                 rx_fifo_bad_frame,
     output wire logic                 rx_fifo_good_frame,
     output wire logic [1:0]           link_speed,
+    output wire logic                 mac_tx_clk,
+    output wire logic                 mac_tx_rst,
+    output wire logic                 mac_rx_clk,
+    output wire logic                 mac_rx_rst,
 
     /*
      * Configuration
@@ -115,6 +119,11 @@ wire tx_clk;
 wire rx_clk;
 wire tx_rst;
 wire rx_rst;
+
+assign mac_tx_clk = tx_clk;
+assign mac_tx_rst = tx_rst;
+assign mac_rx_clk = rx_clk;
+assign mac_rx_rst = rx_rst;
 
 taxi_axis_if #(.DATA_W(8), .USER_EN(1), .USER_W(TX_USER_W), .ID_EN(1), .ID_W(TX_TAG_W)) axis_tx_int();
 taxi_axis_if #(.DATA_W(PTP_TS_W), .KEEP_W(1), .ID_EN(1), .ID_W(TX_TAG_W)) axis_tx_cpl_int();
