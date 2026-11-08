@@ -44,7 +44,7 @@ module taxi_stats_collect #
     /*
      * Statistics increment output
      */
-    taxi_axis_if.src               m_axis_stat,
+    taxi_axis_if.master               m_axis_stat,
 
     /*
      * Control inputs

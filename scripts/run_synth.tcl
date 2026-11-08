@@ -63,3 +63,4 @@ if {[string match "*Complete*" $synth_status]} {
 
 # Close Project cleanly
 close_project
+

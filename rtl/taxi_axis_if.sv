@@ -43,7 +43,7 @@ interface taxi_axis_if #(
     logic tvalid;
     logic tready;
 
-    modport src (
+    modport master (
         output tdata,
         output tkeep,
         output tstrb,
@@ -55,7 +55,7 @@ interface taxi_axis_if #(
         input  tready
     );
 
-    modport snk (
+    modport slave (
         input  tdata,
         input  tkeep,
         input  tstrb,
@@ -65,18 +65,6 @@ interface taxi_axis_if #(
         input  tlast,
         input  tvalid,
         output tready
-    );
-
-    modport mon (
-        input  tdata,
-        input  tkeep,
-        input  tstrb,
-        input  tid,
-        input  tdest,
-        input  tuser,
-        input  tlast,
-        input  tvalid,
-        input  tready
     );
 
 endinterface

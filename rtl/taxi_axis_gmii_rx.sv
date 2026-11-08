@@ -35,7 +35,7 @@ module taxi_axis_gmii_rx #
     /*
      * Receive interface (AXI stream)
      */
-    taxi_axis_if.src                  m_axis_rx,
+    taxi_axis_if.master                  m_axis_rx,
 
     /*
      * PTP

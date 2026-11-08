@@ -37,3 +37,4 @@ taxi_eth_mac_1g_gmii_fifo.sv
 
 taxi_eth_gmii_axi_wrapper.sv
 taxi_eth_axi_wrapper.sv
+

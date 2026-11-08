@@ -30,12 +30,12 @@ module taxi_mac_ctrl_rx #
     /*
      * AXI4-Stream input (sink)
      */
-    taxi_axis_if.snk                           s_axis,
+    taxi_axis_if.slave                           s_axis,
 
     /*
      * AXI4-Stream output (source)
      */
-    taxi_axis_if.src                           m_axis,
+    taxi_axis_if.master                           m_axis,
 
     /*
      * MAC control frame interface

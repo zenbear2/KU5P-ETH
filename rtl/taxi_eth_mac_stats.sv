@@ -36,7 +36,7 @@ module taxi_eth_mac_stats #
      */
     input  wire logic              stat_clk,
     input  wire logic              stat_rst,
-    taxi_axis_if.src               m_axis_stat,
+    taxi_axis_if.master               m_axis_stat,
 
     /*
      * Status

@@ -56,3 +56,4 @@ if {[file exists $tb_file]} {
 puts "=========================================================="
 puts "  Project $PROJ_NAME created successfully!"
 puts "=========================================================="
+

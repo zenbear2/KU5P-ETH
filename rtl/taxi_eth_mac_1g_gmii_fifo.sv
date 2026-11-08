@@ -50,13 +50,13 @@ module taxi_eth_mac_1g_gmii_fifo #
     /*
      * Transmit interface (AXI stream)
      */
-    taxi_axis_if.snk                  s_axis_tx,
-    taxi_axis_if.src                  m_axis_tx_cpl,
+    taxi_axis_if.slave                  s_axis_tx,
+    taxi_axis_if.master                  m_axis_tx_cpl,
 
     /*
      * Receive interface (AXI stream)
      */
-    taxi_axis_if.src                  m_axis_rx,
+    taxi_axis_if.master                  m_axis_rx,
 
     /*
      * GMII interface
@@ -76,7 +76,7 @@ module taxi_eth_mac_1g_gmii_fifo #
      */
     input  wire logic                 stat_clk,
     input  wire logic                 stat_rst,
-    taxi_axis_if.src                  m_axis_stat,
+    taxi_axis_if.master                  m_axis_stat,
 
     /*
      * Status

@@ -70,3 +70,4 @@ set_false_path -to [get_ports {rx_error_bad_frame rx_error_bad_fcs rx_fifo_overf
 # Do NOT apply broad 'set_clock_groups -asynchronous' across these clock domains,
 # as it would override the max-delay and bus-skew constraints on CDC buses.
 # ------------------------------------------------------------------------------
+

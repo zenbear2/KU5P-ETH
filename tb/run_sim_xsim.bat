@@ -10,3 +10,4 @@ call vivado -mode batch -source run_sim_xsim.tcl -nolog -nojournal
 
 popd
 pause
+

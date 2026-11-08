@@ -45,3 +45,4 @@ puts "=========================================================="
 exec xsim sim_snapshot -R
 
 puts "Simulation finished successfully."
+

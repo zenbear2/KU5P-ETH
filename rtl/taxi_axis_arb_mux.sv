@@ -33,12 +33,12 @@ module taxi_axis_arb_mux #
     /*
      * AXI4-Stream inputs (sink)
      */
-    taxi_axis_if.snk   s_axis[S_COUNT],
+    taxi_axis_if.slave   s_axis[S_COUNT],
 
     /*
      * AXI4-Stream output (source)
      */
-    taxi_axis_if.src   m_axis
+    taxi_axis_if.master   m_axis
 );
 
 // extract parameters

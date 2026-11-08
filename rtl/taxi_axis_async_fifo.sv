@@ -63,14 +63,14 @@ module taxi_axis_async_fifo #
      */
     input  wire logic                    s_clk,
     input  wire logic                    s_rst,
-    taxi_axis_if.snk                     s_axis,
+    taxi_axis_if.slave                     s_axis,
 
     /*
      * AXI4-Stream output (source)
      */
     input  wire logic                    m_clk,
     input  wire logic                    m_rst,
-    taxi_axis_if.src                     m_axis,
+    taxi_axis_if.master                     m_axis,
 
     /*
      * Pause

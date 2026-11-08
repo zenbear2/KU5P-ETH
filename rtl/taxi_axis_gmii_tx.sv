@@ -31,8 +31,8 @@ module taxi_axis_gmii_tx #
     /*
      * Transmit interface (AXI stream)
      */
-    taxi_axis_if.snk                  s_axis_tx,
-    taxi_axis_if.src                  m_axis_tx_cpl,
+    taxi_axis_if.slave                  s_axis_tx,
+    taxi_axis_if.master                  m_axis_tx_cpl,
 
     /*
      * GMII output

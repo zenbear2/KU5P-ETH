@@ -20,7 +20,7 @@ module taxi_axis_null_src
     /*
      * AXI4-Stream output (source)
      */
-    taxi_axis_if.src  m_axis
+    taxi_axis_if.master  m_axis
 );
 
 assign m_axis.tdata  = '0;

@@ -15,109 +15,109 @@ module taxi_eth_gmii_axi_wrapper #(
 )(
     (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 axis_aclk CLK",
        X_INTERFACE_PARAMETER = "ASSOCIATED_BUSIF S_AXIS_TX:M_AXIS_RX:S_AXI_CTRL, ASSOCIATED_RESET axis_aresetn" *)
-    input  wire logic                         axis_aclk,
+    input  wire                         axis_aclk,
     (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 axis_aresetn RST",
        X_INTERFACE_PARAMETER = "POLARITY ACTIVE_LOW" *)
-    input  wire logic                         axis_aresetn,
+    input  wire                         axis_aresetn,
     (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 gtx_clk CLK",
        X_INTERFACE_PARAMETER = "FREQ_HZ 125000000, ASSOCIATED_RESET gtx_reset" *)
-    input  wire logic                         gtx_clk,
+    input  wire                         gtx_clk,
     (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 gtx_reset RST",
        X_INTERFACE_PARAMETER = "POLARITY ACTIVE_HIGH" *)
-    input  wire logic                         gtx_reset,
+    input  wire                         gtx_reset,
 
     // Control and streams share axis_aclk and axis_aresetn.
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL AWADDR" *)
     (* X_INTERFACE_PARAMETER = "PROTOCOL AXI4LITE, DATA_WIDTH 32, ADDR_WIDTH 12" *)
-    input  wire logic [11:0]     s_axi_ctrl_awaddr,
+    input  wire [11:0]     s_axi_ctrl_awaddr,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL AWPROT" *)
-    input  wire logic [2:0]      s_axi_ctrl_awprot,
+    input  wire [2:0]      s_axi_ctrl_awprot,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL AWVALID" *)
-    input  wire logic            s_axi_ctrl_awvalid,
+    input  wire            s_axi_ctrl_awvalid,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL AWREADY" *)
-    output wire logic            s_axi_ctrl_awready,
+    output wire            s_axi_ctrl_awready,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL WDATA" *)
-    input  wire logic [31:0]     s_axi_ctrl_wdata,
+    input  wire [31:0]     s_axi_ctrl_wdata,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL WSTRB" *)
-    input  wire logic [3:0]      s_axi_ctrl_wstrb,
+    input  wire [3:0]      s_axi_ctrl_wstrb,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL WVALID" *)
-    input  wire logic            s_axi_ctrl_wvalid,
+    input  wire            s_axi_ctrl_wvalid,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL WREADY" *)
-    output wire logic            s_axi_ctrl_wready,
+    output wire            s_axi_ctrl_wready,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL BRESP" *)
-    output wire logic [1:0]      s_axi_ctrl_bresp,
+    output wire [1:0]      s_axi_ctrl_bresp,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL BVALID" *)
-    output wire logic            s_axi_ctrl_bvalid,
+    output wire            s_axi_ctrl_bvalid,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL BREADY" *)
-    input  wire logic            s_axi_ctrl_bready,
+    input  wire            s_axi_ctrl_bready,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL ARADDR" *)
-    input  wire logic [11:0]     s_axi_ctrl_araddr,
+    input  wire [11:0]     s_axi_ctrl_araddr,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL ARPROT" *)
-    input  wire logic [2:0]      s_axi_ctrl_arprot,
+    input  wire [2:0]      s_axi_ctrl_arprot,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL ARVALID" *)
-    input  wire logic            s_axi_ctrl_arvalid,
+    input  wire            s_axi_ctrl_arvalid,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL ARREADY" *)
-    output wire logic            s_axi_ctrl_arready,
+    output wire            s_axi_ctrl_arready,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL RDATA" *)
-    output wire logic [31:0]     s_axi_ctrl_rdata,
+    output wire [31:0]     s_axi_ctrl_rdata,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL RRESP" *)
-    output wire logic [1:0]      s_axi_ctrl_rresp,
+    output wire [1:0]      s_axi_ctrl_rresp,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL RVALID" *)
-    output wire logic            s_axi_ctrl_rvalid,
+    output wire            s_axi_ctrl_rvalid,
     (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 S_AXI_CTRL RREADY" *)
-    input  wire logic            s_axi_ctrl_rready,
+    input  wire            s_axi_ctrl_rready,
     (* X_INTERFACE_INFO = "xilinx.com:signal:interrupt:1.0 irq INTERRUPT",
        X_INTERFACE_PARAMETER = "SENSITIVITY LEVEL_HIGH" *)
-    output wire logic irq,
+    output wire irq,
 
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_TX TDATA" *)
-    input  wire logic [AXIS_DATA_WIDTH-1:0]     s_axis_tx_tdata,
+    input  wire [AXIS_DATA_WIDTH-1:0]     s_axis_tx_tdata,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_TX TKEEP" *)
-    input  wire logic [AXIS_DATA_WIDTH/8-1:0]   s_axis_tx_tkeep,
+    input  wire [AXIS_DATA_WIDTH/8-1:0]   s_axis_tx_tkeep,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_TX TVALID" *)
-    input  wire logic                         s_axis_tx_tvalid,
+    input  wire                         s_axis_tx_tvalid,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_TX TREADY" *)
-    output wire logic                         s_axis_tx_tready,
+    output wire                         s_axis_tx_tready,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_TX TLAST" *)
-    input  wire logic                         s_axis_tx_tlast,
+    input  wire                         s_axis_tx_tlast,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS_TX TUSER" *)
-    input  wire logic                         s_axis_tx_tuser,
+    input  wire                         s_axis_tx_tuser,
 
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_RX TDATA" *)
-    output wire logic [AXIS_DATA_WIDTH-1:0]     m_axis_rx_tdata,
+    output wire [AXIS_DATA_WIDTH-1:0]     m_axis_rx_tdata,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_RX TKEEP" *)
-    output wire logic [AXIS_DATA_WIDTH/8-1:0]   m_axis_rx_tkeep,
+    output wire [AXIS_DATA_WIDTH/8-1:0]   m_axis_rx_tkeep,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_RX TVALID" *)
-    output wire logic                         m_axis_rx_tvalid,
+    output wire                         m_axis_rx_tvalid,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_RX TREADY" *)
-    input  wire logic                         m_axis_rx_tready,
+    input  wire                         m_axis_rx_tready,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_RX TLAST" *)
-    output wire logic                         m_axis_rx_tlast,
+    output wire                         m_axis_rx_tlast,
     (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS_RX TUSER" *)
-    output wire logic                         m_axis_rx_tuser,
+    output wire                         m_axis_rx_tuser,
 
-    input  wire logic                         gmii_rx_clk,
-    input  wire logic [7:0]                   gmii_rxd,
-    input  wire logic                         gmii_rx_dv,
-    input  wire logic                         gmii_rx_er,
-    input  wire logic                         mii_tx_clk,
-    output wire logic                         gmii_tx_clk,
-    output wire logic [7:0]                   gmii_txd,
-    output wire logic                         gmii_tx_en,
-    output wire logic                         gmii_tx_er,
+    input  wire                         gmii_rx_clk,
+    input  wire [7:0]                   gmii_rxd,
+    input  wire                         gmii_rx_dv,
+    input  wire                         gmii_rx_er,
+    input  wire                         mii_tx_clk,
+    output wire                         gmii_tx_clk,
+    output wire [7:0]                   gmii_txd,
+    output wire                         gmii_tx_en,
+    output wire                         gmii_tx_er,
 
     // Status events are in the axis_aclk domain and are not sticky.
-    output wire logic                         tx_error_underflow,
-    output wire logic                         tx_fifo_overflow,
-    output wire logic                         tx_fifo_bad_frame,
-    output wire logic                         tx_fifo_good_frame,
-    output wire logic                         rx_error_bad_frame,
-    output wire logic                         rx_error_bad_fcs,
-    output wire logic                         rx_fifo_overflow,
-    output wire logic                         rx_fifo_bad_frame,
-    output wire logic                         rx_fifo_good_frame,
+    output wire                         tx_error_underflow,
+    output wire                         tx_fifo_overflow,
+    output wire                         tx_fifo_bad_frame,
+    output wire                         tx_fifo_good_frame,
+    output wire                         rx_error_bad_frame,
+    output wire                         rx_error_bad_fcs,
+    output wire                         rx_fifo_overflow,
+    output wire                         rx_fifo_bad_frame,
+    output wire                         rx_fifo_good_frame,
     // This is an estimated speed, not PHY link-up status.
-    output wire logic [1:0]                   link_speed
+    output wire [1:0]                   link_speed
 );
 
 initial begin

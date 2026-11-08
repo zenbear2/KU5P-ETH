@@ -275,3 +275,4 @@ run_sim_xsim.bat
 Licensed under the **CERN Open Hardware Licence Version 2 - Strongly Reciprocal (CERN-OHL-S-2.0)**.
 Original MAC and FIFO modules copyright (c) 2016-2025 FPGA Ninja, LLC (Alex Forencich).
 Wrapper and KU5P adaptations copyright (c) 2026.
+
