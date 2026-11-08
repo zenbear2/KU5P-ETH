@@ -1,0 +1,29 @@
+# Vivado Temporary & Log Files
+.Xil/
+*.jou
+*.log
+*.backup.*
+*.backup
+*.str
+*.dcp
+*.wdb
+
+# Vivado Internal Run & Cache Dirs
+KU5P-ETH.cache/
+KU5P-ETH.gen/
+KU5P-ETH.hw/
+KU5P-ETH.ip_user_files/
+KU5P-ETH.sim/
+KU5P-ETH.runs/
+
+# Simulation build artifacts
+tb/build/
+tb/xsim_run/
+tb/xsim.dir/
+tb/*.vcd
+tb/*.fst
+xsim.dir/
+
+# OS artifacts
+.DS_Store
+Thumbs.db
