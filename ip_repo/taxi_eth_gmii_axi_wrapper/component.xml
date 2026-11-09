@@ -506,7 +506,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>dcdda33a</spirit:value>
+            <spirit:value>37449ca9</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -522,7 +522,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>ba02ff81</spirit:value>
+            <spirit:value>d8b83298</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1420,41 +1420,37 @@
         <spirit:name>src/ku5p_eth_timing.xdc</spirit:name>
         <spirit:userFileType>xdc</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
+        <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>src/taxi_axis_async_fifo.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>src/taxi_eth_gmii_cfg_cdc.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>src/taxi_eth_mac_fifo.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>src/taxi_sync_reset.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>src/taxi_sync_signal.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
         <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>src/taxi_arbiter.sv</spirit:name>
@@ -1609,7 +1605,7 @@
       <spirit:file>
         <spirit:name>src/taxi_eth_gmii_axi_wrapper.sv</spirit:name>
         <spirit:fileType>systemVerilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_9988f503</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_d3991579</spirit:userFileType>
         <spirit:userFileType>IMPORTED_FILE</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -1843,13 +1839,13 @@
       <xilinx:vendorDisplayName>Taxi Project</xilinx:vendorDisplayName>
       <xilinx:vendorURL>https://github.com/zenbear2/KU5P-ETH</xilinx:vendorURL>
       <xilinx:coreRevision>1</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2026-11-08T07:54:00Z</xilinx:coreCreationDateTime>
+      <xilinx:coreCreationDateTime>2026-11-08T09:24:07Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="d2189daa"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="75ec90ec"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="bb7fa122"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="694f2f66"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="f72e6ac9"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="2973d279"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="6aeabac2"/>

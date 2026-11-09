@@ -26,8 +26,12 @@ foreach fifo_inst [get_cells -hier -filter {(ORIG_REF_NAME == taxi_axis_async_fi
     if {[llength $sync_ffs]} {
         set_property ASYNC_REG TRUE $sync_ffs
 
-        set_max_delay -from [get_cells "$fifo_inst/rd_ptr_reg_reg[*] $fifo_inst/rd_ptr_gray_reg_reg[*]"] -to [get_cells "$fifo_inst/rd_ptr_gray_sync1_reg_reg[*]"] -datapath_only $read_clk_period
-        set_bus_skew  -from [get_cells "$fifo_inst/rd_ptr_reg_reg[*] $fifo_inst/rd_ptr_gray_reg_reg[*]"] -to [get_cells "$fifo_inst/rd_ptr_gray_sync1_reg_reg[*]"] $write_clk_period
+        set from_cells [get_cells -quiet "$fifo_inst/rd_ptr_reg_reg[*] $fifo_inst/rd_ptr_gray_reg_reg[*]"]
+        set to_cells   [get_cells -quiet "$fifo_inst/rd_ptr_gray_sync1_reg_reg[*]"]
+        if {[llength $from_cells] && [llength $to_cells]} {
+            set_max_delay -from $from_cells -to $to_cells -datapath_only $read_clk_period
+            set_bus_skew  -from $from_cells -to $to_cells $write_clk_period
+        }
     }
 
     set sync_ffs [get_cells -quiet -hier -regexp ".*/wr_ptr_gray_sync\[12\]_reg_reg\\\[\\d+\\\]" -filter "PARENT == $fifo_inst"]
@@ -35,8 +39,12 @@ foreach fifo_inst [get_cells -hier -filter {(ORIG_REF_NAME == taxi_axis_async_fi
     if {[llength $sync_ffs]} {
         set_property ASYNC_REG TRUE $sync_ffs
 
-        set_max_delay -from [get_cells -quiet "$fifo_inst/wr_ptr_reg_reg[*] $fifo_inst/wr_ptr_gray_reg_reg[*]"] -to [get_cells "$fifo_inst/wr_ptr_gray_sync1_reg_reg[*]"] -datapath_only $write_clk_period
-        set_bus_skew  -from [get_cells -quiet "$fifo_inst/wr_ptr_reg_reg[*] $fifo_inst/wr_ptr_gray_reg_reg[*]"] -to [get_cells "$fifo_inst/wr_ptr_gray_sync1_reg_reg[*]"] $read_clk_period
+        set from_cells [get_cells -quiet "$fifo_inst/wr_ptr_reg_reg[*] $fifo_inst/wr_ptr_gray_reg_reg[*]"]
+        set to_cells   [get_cells -quiet "$fifo_inst/wr_ptr_gray_sync1_reg_reg[*]"]
+        if {[llength $from_cells] && [llength $to_cells]} {
+            set_max_delay -from $from_cells -to $to_cells -datapath_only $write_clk_period
+            set_bus_skew  -from $from_cells -to $to_cells $read_clk_period
+        }
     }
 
     set sync_ffs [get_cells -quiet -hier -regexp ".*/wr_ptr_commit_sync_reg_reg\\\[\\d+\\\]" -filter "PARENT == $fifo_inst"]
@@ -44,8 +52,12 @@ foreach fifo_inst [get_cells -hier -filter {(ORIG_REF_NAME == taxi_axis_async_fi
     if {[llength $sync_ffs]} {
         set_property ASYNC_REG TRUE $sync_ffs
 
-        set_max_delay -from [get_cells -quiet "$fifo_inst/wr_ptr_sync_commit_reg_reg[*]"] -to [get_cells "$fifo_inst/wr_ptr_commit_sync_reg_reg[*]"] -datapath_only $write_clk_period
-        set_bus_skew  -from [get_cells -quiet "$fifo_inst/wr_ptr_sync_commit_reg_reg[*]"] -to [get_cells "$fifo_inst/wr_ptr_commit_sync_reg_reg[*]"] $read_clk_period
+        set from_cells [get_cells -quiet "$fifo_inst/wr_ptr_sync_commit_reg_reg[*]"]
+        set to_cells   [get_cells -quiet "$fifo_inst/wr_ptr_commit_sync_reg_reg[*]"]
+        if {[llength $from_cells] && [llength $to_cells]} {
+            set_max_delay -from $from_cells -to $to_cells -datapath_only $write_clk_period
+            set_bus_skew  -from $from_cells -to $to_cells $read_clk_period
+        }
     }
 
     # output register (needed for distributed RAM sync write/async read)
@@ -63,8 +75,17 @@ foreach fifo_inst [get_cells -hier -filter {(ORIG_REF_NAME == taxi_axis_async_fi
     if {[llength $update_ffs]} {
         set_property ASYNC_REG TRUE $update_ffs
 
-        set_max_delay -from [get_cells "$fifo_inst/wr_ptr_update_reg_reg"] -to [get_cells "$fifo_inst/wr_ptr_update_sync1_reg_reg"] -datapath_only $write_clk_period
-        set_max_delay -from [get_cells "$fifo_inst/wr_ptr_update_sync3_reg_reg"] -to [get_cells "$fifo_inst/wr_ptr_update_ack_sync1_reg_reg"] -datapath_only $read_clk_period
+        set u_from [get_cells -quiet "$fifo_inst/wr_ptr_update_reg_reg"]
+        set u_to   [get_cells -quiet "$fifo_inst/wr_ptr_update_sync1_reg_reg"]
+        if {[llength $u_from] && [llength $u_to]} {
+            set_max_delay -from $u_from -to $u_to -datapath_only $write_clk_period
+        }
+
+        set u_ack_from [get_cells -quiet "$fifo_inst/wr_ptr_update_sync3_reg_reg"]
+        set u_ack_to   [get_cells -quiet "$fifo_inst/wr_ptr_update_ack_sync1_reg_reg"]
+        if {[llength $u_ack_from] && [llength $u_ack_to]} {
+            set_max_delay -from $u_ack_from -to $u_ack_to -datapath_only $read_clk_period
+        }
     }
 
     # status synchronization
@@ -74,7 +95,11 @@ foreach fifo_inst [get_cells -hier -filter {(ORIG_REF_NAME == taxi_axis_async_fi
         if {[llength $status_sync_regs]} {
             set_property ASYNC_REG TRUE $status_sync_regs
 
-            set_max_delay -from [get_cells "$fifo_inst/${i}_sync1_reg_reg"] -to [get_cells "$fifo_inst/${i}_sync2_reg_reg"] -datapath_only $read_clk_period
+            set s_from [get_cells -quiet "$fifo_inst/${i}_sync1_reg_reg"]
+            set s_to   [get_cells -quiet "$fifo_inst/${i}_sync2_reg_reg"]
+            if {[llength $s_from] && [llength $s_to]} {
+                set_max_delay -from $s_from -to $s_to -datapath_only $read_clk_period
+            }
         }
     }
 }

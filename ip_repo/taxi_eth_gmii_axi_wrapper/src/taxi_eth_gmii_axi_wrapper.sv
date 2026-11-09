@@ -179,7 +179,7 @@ assign axis_stat.tready = 1'b1;
 
 // Reset both mailbox destinations together to preserve toggle coherence.
 wire cfg_reset = logic_rst || gtx_reset;
-wire mac_tx_clk, mac_tx_rst, mac_rx_clk, mac_rx_rst;
+wire mac_tx_clk, mac_tx_rst, mac_rx_clk, mac_rx_rst, mac_rx_dv;
 wire cfg_apply, cfg_busy;
 wire [50:0] config_data, tx_config, rx_config;
 localparam logic [50:0] DEFAULT_CONFIG = {8'd12, 16'd1517, 16'd1517, 8'd59, 3'b111};
@@ -217,7 +217,7 @@ taxi_eth_gmii_cfg_cdc #(.WIDTH(51), .RESET_VALUE(DEFAULT_CONFIG)) config_cdc_ins
     .src_clk(axis_aclk), .rst(cfg_reset), .apply(cfg_apply),
     .config_data(config_data), .busy(cfg_busy),
     .tx_clk(mac_tx_clk), .tx_active(gmii_tx_en), .tx_config(tx_config),
-    .rx_clk(mac_rx_clk), .rx_active(gmii_rx_dv), .rx_config(rx_config)
+    .rx_clk(mac_rx_clk), .rx_active(mac_rx_dv), .rx_config(rx_config)
 );
 
 taxi_eth_mac_1g_gmii_fifo #(
@@ -267,6 +267,7 @@ taxi_eth_mac_1g_gmii_fifo #(
     .link_speed(link_speed),
     .mac_tx_clk(mac_tx_clk), .mac_tx_rst(mac_tx_rst),
     .mac_rx_clk(mac_rx_clk), .mac_rx_rst(mac_rx_rst),
+    .mac_rx_dv(mac_rx_dv),
     // Length fields use the core's length-minus-one encoding.
     .cfg_tx_pad_en(tx_config[2]),
     .cfg_tx_min_pkt_len(tx_config[10:3]),

@@ -95,6 +95,7 @@ module taxi_eth_mac_1g_gmii_fifo #
     output wire logic                 mac_tx_rst,
     output wire logic                 mac_rx_clk,
     output wire logic                 mac_rx_rst,
+    output wire logic                 mac_rx_dv,
 
     /*
      * Configuration
@@ -226,6 +227,7 @@ eth_mac_1g_gmii_inst (
     .tx_rst(tx_rst),
     .rx_clk(rx_clk),
     .rx_rst(rx_rst),
+    .mac_rx_dv(mac_rx_dv),
 
     /*
      * Transmit interface (AXI stream)

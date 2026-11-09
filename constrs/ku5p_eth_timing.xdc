@@ -20,10 +20,10 @@ create_clock -period 8.000 -name gmii_rx_clk [get_ports gmii_rx_clk]
 create_clock -period 40.000 -name mii_tx_clk [get_ports mii_tx_clk]
 
 # ------------------------------------------------------------------------------
-# 2. Forwarded GMII TX Clock (from internal ODDR primitive)
+# 2. Forwarded GMII TX Clock (from internal ODDR / OSERDESE3 primitive)
 # ------------------------------------------------------------------------------
 create_generated_clock -name gmii_tx_clk_out \
-    -source [get_pins -hier -filter {NAME =~ *clk_oddr_inst/*oddr_inst/C}] \
+    -source [get_pins -hier -filter {NAME =~ *clk_oddr_inst* && (REF_PIN_NAME == CLK || REF_PIN_NAME == C)}] \
     -divide_by 1 \
     [get_ports gmii_tx_clk]
 
@@ -52,11 +52,11 @@ set_false_path -through [get_ports axis_aresetn]
 set_false_path -through [get_ports gtx_reset]
 
 # IRQ output is level-sensitive interrupt to interrupt controller
-set_false_path -to [get_ports irq]
+set_false_path -through [get_ports irq]
 
 # Unregistered status indicators in axis_aclk domain (non-critical monitoring)
-set_false_path -to [get_ports {tx_error_underflow tx_fifo_overflow tx_fifo_bad_frame tx_fifo_good_frame}]
-set_false_path -to [get_ports {rx_error_bad_frame rx_error_bad_fcs rx_fifo_overflow rx_fifo_bad_frame rx_fifo_good_frame link_speed[*]}]
+set_false_path -through [get_ports {tx_error_underflow tx_fifo_overflow tx_fifo_bad_frame tx_fifo_good_frame}]
+set_false_path -through [get_ports {rx_error_bad_frame rx_error_bad_fcs rx_fifo_overflow rx_fifo_bad_frame rx_fifo_good_frame link_speed[*]}]
 
 # ------------------------------------------------------------------------------
 # NOTE ON CDC CONSTRAINTS:
@@ -70,4 +70,3 @@ set_false_path -to [get_ports {rx_error_bad_frame rx_error_bad_fcs rx_fifo_overf
 # Do NOT apply broad 'set_clock_groups -asynchronous' across these clock domains,
 # as it would override the max-delay and bus-skew constraints on CDC buses.
 # ------------------------------------------------------------------------------
-

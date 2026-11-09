@@ -110,6 +110,9 @@ foreach fg [ipx::get_file_groups -of_objects $core] {
         set_property type tclSource $f
         set_property used_in {synthesis implementation} $f
     }
+    foreach f [ipx::get_files -of_objects $fg -filter {NAME =~ *timing.xdc}] {
+        set_property used_in {out_of_context} $f
+    }
 }
 
 # ------------------------------------------------------------------------------

@@ -37,6 +37,7 @@ module taxi_eth_mac_1g_gmii #
     input  wire logic                 gtx_rst,
     output wire logic                 rx_clk,
     output wire logic                 rx_rst,
+    output wire logic                 mac_rx_dv,
     output wire logic                 tx_clk,
     output wire logic                 tx_rst,
 
@@ -228,6 +229,8 @@ wire        mac_gmii_rx_er;
 wire [7:0]  mac_gmii_txd;
 wire        mac_gmii_tx_en;
 wire        mac_gmii_tx_er;
+
+assign mac_rx_dv = mac_gmii_rx_dv;
 
 taxi_gmii_phy_if #(
     .SIM(SIM),

@@ -151,14 +151,11 @@ tx_ssio_sdr_inst (
 
 if (!SIM && VENDOR == "XILINX") begin
     // Xilinx/AMD device support
-
-    BUFGMUX
-    gmii_bufgmux_inst (
-        .I0(phy_mii_tx_clk),
-        .I1(gtx_clk),
-        .S(link_speed_reg[1]),
-        .O(mac_gmii_tx_clk)
-    );
+    // For 1000BASE-T Gigabit GMII mode, mac_gmii_tx_clk is directly driven by gtx_clk (125 MHz).
+    // In this board design, MII 10/100M TX clock is not routed/used (phy_mii_tx_clk is static or tied).
+    // Using BUFGMUX here causes a fatal clock lockup if phy_mii_tx_clk is inactive,
+    // as Xilinx glitchless clock muxes (BUFGCTRL) cannot switch away from a stopped/inactive clock.
+    assign mac_gmii_tx_clk = gtx_clk;
 
 end else begin
     // generic/simulation implementation (no vendor primitives)
