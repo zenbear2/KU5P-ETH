@@ -9,6 +9,7 @@
 *.wdb
 
 # Vivado Internal Run & Cache Dirs
+*.xpr
 KU5P-ETH.cache/
 KU5P-ETH.gen/
 KU5P-ETH.hw/
